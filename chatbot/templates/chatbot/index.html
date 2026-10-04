@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tư vấn tuyển sinh PTIT</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #eef2f7;
+      display: flex;
+      justify-content: center;
+    }
+
+    .chat {
+      width: 100%;
+      max-width: 560px;
+      height: 100vh;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #c8102e;
+      color: #fff;
+      padding: 14px 16px;
+      font-weight: bold;
+    }
+
+    #khung {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .tin {
+      max-width: 80%;
+      padding: 9px 13px;
+      border-radius: 14px;
+      white-space: pre-wrap;
+      line-height: 1.45;
+    }
+
+    .bot {
+      background: #eef0f4;
+      align-self: flex-start;
+    }
+
+    .nguoi {
+      background: #c8102e;
+      color: #fff;
+      align-self: flex-end;
+    }
+
+    #goiy {
+      padding: 0 14px 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    #goiy button {
+      border: 1px solid #c8102e;
+      background: #fff;
+      color: #c8102e;
+      border-radius: 16px;
+      padding: 5px 11px;
+      cursor: pointer;
+    }
+
+    form {
+      display: flex;
+      gap: 8px;
+      padding: 10px 14px;
+      border-top: 1px solid #ddd;
+    }
+
+    input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      font-size: 15px;
+    }
+
+    form button {
+      background: #c8102e;
+      color: #fff;
+      border: 0;
+      border-radius: 20px;
+      padding: 0 18px;
+      cursor: pointer;
+    }
+
+    footer {
+      font-size: 12px;
+      color: #888;
+      text-align: center;
+      padding: 6px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="chat">
+    <header>Trợ lý tư vấn tuyển sinh PTIT</header>
+    <div id="khung"></div>
+    <div id="goiy"></div>
+    <form id="form">
+      <input id="o_nhap" placeholder="Nhập câu hỏi, VD: học phí bao nhiêu?" autocomplete="off">
+      <button type="submit">Gửi</button>
+    </form>
+    <footer>Dữ liệu minh họa cho đồ án, không phải thông tin tuyển sinh chính thức.</footer>
+  </div>
+
+  <script>
+    const khung = document.getElementById("khung");
+    const form = document.getElementById("form");
+    const oNhap = document.getElementById("o_nhap");
+
+    // Thêm 1 bong bóng chat. Dùng textContent (không dùng innerHTML) để người dùng
+    // không chèn được mã HTML/JS vào trang.
+    function themTin(noiDung, loai) {
+      const div = document.createElement("div");
+      div.className = "tin " + loai;
+      div.textContent = noiDung;
+      khung.appendChild(div);
+      khung.scrollTop = khung.scrollHeight;   // tự cuộn xuống tin mới nhất
+    }
+
+    async function hoi(cauHoi) {
+      themTin(cauHoi, "nguoi");
+      try {
+        // encodeURIComponent: biến "học phí?" thành dạng an toàn để đặt lên URL
+        const res = await fetch("/chat/?q=" + encodeURIComponent(cauHoi));
+        const data = await res.json();
+        themTin(data.answer, "bot");
+      } catch (e) {
+        themTin("Không kết nối được tới server, bạn thử lại nhé.", "bot");
+      }
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();                      // chặn trình duyệt tải lại trang
+      const cauHoi = oNhap.value.trim();
+      if (!cauHoi) return;
+      oNhap.value = "";
+      hoi(cauHoi);
+    });
+
+    // Các nút gợi ý: bấm là gửi luôn câu hỏi
+    ["Ngành học", "Học phí", "Điểm chuẩn", "Học bổng", "Ký túc xá", "Thời gian nộp hồ sơ"].forEach((chu) => {
+      const nut = document.createElement("button");
+      nut.type = "button";
+      nut.textContent = chu;
+      nut.onclick = () => hoi(chu);
+      document.getElementById("goiy").appendChild(nut);
+    });
+
+    themTin("Xin chào! Mình là trợ lý tư vấn tuyển sinh PTIT (bản demo). Bạn muốn hỏi gì nào?", "bot");
+  </script>
+</body>
+
+</html>

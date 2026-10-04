@@ -1,0 +1,69 @@
+{
+  "intents": [
+    {
+      "tag": "chao_hoi",
+      "keywords": ["xin chao", "chao", "hello", "hi", "alo", "chao ban", "chao ad"],
+      "answer": "Xin chào! Mình là trợ lý tư vấn tuyển sinh PTIT (bản demo).\nBạn có thể hỏi mình về: ngành học, học phí, điểm chuẩn, phương thức xét tuyển, học bổng, ký túc xá, thời gian nộp hồ sơ."
+    },
+    {
+      "tag": "gioi_thieu",
+      "keywords": ["gioi thieu", "ptit la gi", "truong ptit", "ve truong", "lich su truong", "thong tin truong"],
+      "answer": "PTIT (Học viện Công nghệ Bưu chính Viễn thông) là trường đào tạo mạnh về công nghệ thông tin, viễn thông, an toàn thông tin và kinh tế số.\n(Dữ liệu minh họa cho đồ án.)"
+    },
+    {
+      "tag": "nganh_hoc",
+      "keywords": ["nganh", "nganh hoc", "co nhung nganh nao", "dao tao nganh", "chuyen nganh", "hoc nganh gi"],
+      "answer": "Các ngành đào tạo (demo):\n- Công nghệ thông tin\n- Khoa học máy tính\n- An toàn thông tin\n- Kỹ thuật điện tử viễn thông\n- Marketing\n- Kế toán"
+    },
+    {
+      "tag": "hoc_phi",
+      "keywords": ["hoc phi", "chi phi", "bao nhieu tien", "dong tien", "muc phi", "tien hoc"],
+      "answer": "Học phí năm học 2026-2027 (demo):\n- Công nghệ thông tin, Khoa học máy tính, An toàn thông tin: 28.000.000 đ/năm\n- Kỹ thuật điện tử viễn thông: 26.000.000 đ/năm\n- Marketing, Kế toán: 24.000.000 đ/năm"
+    },
+    {
+      "tag": "diem_chuan",
+      "keywords": ["diem chuan", "diem chuan nam ngoai", "bao nhieu diem", "diem dau vao", "diem trung tuyen", "diem san"],
+      "answer": "Điểm chuẩn năm ngoái (demo, tổ hợp A00/A01):\n- Công nghệ thông tin: 26.5\n- Khoa học máy tính: 26.0\n- An toàn thông tin: 25.8\n- Marketing: 25.2\n- Kỹ thuật điện tử viễn thông: 24.5\n- Kế toán: 23.8"
+    },
+    {
+      "tag": "phuong_thuc",
+      "keywords": ["phuong thuc", "xet tuyen", "cach xet", "to hop", "xet hoc ba", "tuyen thang", "xet diem thi"],
+      "answer": "Các phương thức xét tuyển (demo):\n1. Điểm thi tốt nghiệp THPT\n2. Xét học bạ\n3. Xét tuyển thẳng\n4. Điểm thi đánh giá năng lực"
+    },
+    {
+      "tag": "hoc_bong",
+      "keywords": ["hoc bong", "mien giam", "ho tro tai chinh", "giam hoc phi"],
+      "answer": "Học bổng (demo):\n- Học bổng tân sinh viên: giảm 50% học phí kỳ đầu cho thủ khoa đầu vào\n- Học bổng khuyến khích học tập: xét mỗi học kỳ cho sinh viên đạt GPA từ 3.2"
+    },
+    {
+      "tag": "ky_tuc_xa",
+      "keywords": ["ky tuc xa", "ktx", "o noi tru", "cho o", "phong o", "o ky tuc"],
+      "answer": "Ký túc xá (demo): phòng 6 người, giá 400.000 đ/tháng/người, có wifi và nhà ăn. Ưu tiên sinh viên năm nhất và sinh viên ở xa."
+    },
+    {
+      "tag": "thoi_gian",
+      "keywords": ["thoi gian", "han nop", "nop ho so", "khi nao", "bao gio", "han chot", "dang ky xet tuyen"],
+      "answer": "Thời gian nộp hồ sơ (demo): từ 01/04 đến 15/07 hằng năm. Hồ sơ gồm phiếu đăng ký, học bạ/bảng điểm, giấy tờ ưu tiên (nếu có)."
+    },
+    {
+      "tag": "viec_lam",
+      "keywords": ["viec lam", "ra truong", "co hoi nghe nghiep", "luong", "thuc tap"],
+      "answer": "Việc làm (demo): hơn 90% sinh viên có việc làm sau 6 tháng tốt nghiệp. Nhà trường liên kết với nhiều doanh nghiệp công nghệ để sinh viên thực tập từ năm 3."
+    },
+    {
+      "tag": "lien_he",
+      "keywords": ["lien he", "so dien thoai", "hotline", "email", "dia chi", "truong o dau", "tu van truc tiep"],
+      "answer": "Liên hệ tư vấn (demo):\n- Hotline: 0123 456 789\n- Email: tuyensinh@example.edu.vn\n- Địa chỉ: Hà Nội"
+    },
+    {
+      "tag": "cam_on",
+      "keywords": ["cam on", "thanks", "thank you", "tks"],
+      "answer": "Không có gì! Bạn cần hỏi thêm gì cứ nhắn mình nhé."
+    },
+    {
+      "tag": "tam_biet",
+      "keywords": ["tam biet", "bye", "goodbye", "hen gap lai"],
+      "answer": "Tạm biệt bạn, chúc bạn đỗ nguyện vọng mơ ước!"
+    }
+  ]
+}
