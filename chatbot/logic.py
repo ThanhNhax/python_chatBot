@@ -44,5 +44,8 @@ def tra_loi(cau_hoi):
             intent_tot_nhat, diem_cao_nhat = intent, diem
 
     if intent_tot_nhat is None:
+        # Ghi nhận câu hỏi thất bại vào database để Admin thống kê
+        from chatbot.models import UnresolvedQuestion
+        UnresolvedQuestion.objects.create(question=cau_hoi)
         return CAU_TRA_LOI_MAC_DINH
     return intent_tot_nhat.answer

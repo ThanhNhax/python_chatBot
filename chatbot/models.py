@@ -10,3 +10,14 @@ class Intent(models.Model):
     
     def get_keywords_list(self):
         return [kw.strip() for kw in self.keywords.split(',') if kw.strip()]
+
+class UnresolvedQuestion(models.Model):
+    question = models.CharField(max_length=500, verbose_name="Câu hỏi chưa hiểu")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Thời gian hỏi")
+
+    class Meta:
+        verbose_name = "Câu hỏi chưa hiểu"
+        verbose_name_plural = "Các câu hỏi chưa hiểu"
+
+    def __str__(self):
+        return self.question
