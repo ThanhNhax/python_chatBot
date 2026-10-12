@@ -1,11 +1,13 @@
+import os
 import re
 import unicodedata
-import google.generativeai as genai
+from dotenv import load_dotenv
+from google import genai
+from google.genai import types
 from chatbot.models import Intent, UnresolvedQuestion
 
-# Cấu hình API Key của bạn
-import os
-genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
+# Load biến môi trường từ .env
+load_dotenv()
 
 CAU_TRA_LOI_MAC_DINH = (
     "Xin lỗi, mình chưa hiểu câu hỏi này. "
@@ -70,14 +72,19 @@ def tra_loi(cau_hoi):
             "Nếu khách hỏi thông tin KHÔNG CÓ trong tài liệu, hãy trả lời chính xác chữ: 'UNRESOLVED'."
         )
         
-        model = genai.GenerativeModel(
-            model_name="gemini-3.5-flash",
-            system_instruction=system_instruction
+        api_key = os.environ.get("GEMINI_API_KEY")
+        client = genai.Client(api_key=api_key) if api_key else genai.Client()
+
+        chat = client.chats.create(
+            model="gemini-3.5-flash-lite",
+            config=types.GenerateContentConfig(
+                system_instruction=system_instruction
+            )
         )
         
         prompt = f"{context_text}\n\nCâu hỏi của khách: {cau_hoi}"
-        response = model.generate_content(prompt)
-        answer = response.text.strip()
+        response = chat.send_message(prompt)
+        answer = response.text.strip() if response.text else ""
         
         # Nếu AI không biết câu trả lời
         if "UNRESOLVED" in answer:
